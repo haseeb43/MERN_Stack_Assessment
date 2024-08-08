@@ -1,0 +1,14 @@
+{
+  "name": "my-monorepo",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run dev --prefix packages/client\" \"npm run dev --prefix packages/server\""
+  },
+  "workspaces": [
+    "packages/client",
+    "packages/server"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
