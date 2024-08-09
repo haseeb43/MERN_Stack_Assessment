@@ -18,12 +18,11 @@ dotenv.config({
     });
 
     console.log("Successfully seed data");
-
-    disconnectDB();
     process.exit(0);
   } catch (error) {
     console.log(`error while seeding ${error}`);
-    disconnectDB();
     process.exit(1);
+  } finally {
+    disconnectDB();
   }
 })();
