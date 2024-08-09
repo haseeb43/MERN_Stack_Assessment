@@ -9,8 +9,8 @@ import { verifyJwt } from "../middlewares/auth.middlewares.js";
 
 const router = express.Router();
 
-router.route("/create").post(verifyJwt, verifyAdmin, createPost);
-router.route("/posts").get(verifyJwt, allPosts);
-router.route("/delete/:id").delete(verifyJwt, verifyAdmin, deletePost);
+router.route("/").post(verifyJwt, verifyAdmin, createPost);
+router.route("/").get(verifyJwt, allPosts);
+router.route("/:id").delete(verifyJwt, verifyAdmin, deletePost);
 
 export default router;
