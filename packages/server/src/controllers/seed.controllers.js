@@ -6,8 +6,8 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 
 const seedAdmin = asyncHandler(async (req, res, next) => {
   const admin = await User.create({
-    username: "admin",
-    password: "admin@softMindBlog",
+    username: process.env.ADMIN_USERNAME,
+    password: process.env.ADMIN_PASSWORD,
     role: ADMIN_ROLE,
   });
 
