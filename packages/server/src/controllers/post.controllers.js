@@ -44,6 +44,7 @@ const getPost = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, post, "Post found successfully"));
 });
+
 const allPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find().populate(
     "author",
@@ -83,4 +84,46 @@ const deletePost = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, deletedPost, "Post deleted successfully"));
 });
 
-export { createPost, getPost, allPosts, deletePost };
+const updatePost = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { title, content } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    throw new ApiError(409, `${id} is not a valid id`);
+  }
+
+  if ([title, content].some((item) => item.trim() === "")) {
+    throw new ApiError(409, "All fields are required");
+  }
+
+  if (content.length < 10) {
+    throw new ApiError(409, "Content must be at least 10 characters long");
+  }
+
+  const post = await Post.findById(id);
+
+  if (!post) {
+    throw new ApiError(404, "No post with this id found");
+  }
+
+  const updatedPost = await Post.findByIdAndUpdate(
+    id,
+    {
+      title,
+      content,
+    },
+    {
+      new: true,
+    },
+  ).populate("author", "-password -createdAt -updatedAt -__v -refreshToken")
+
+  if (!updatedPost) {
+    throw new ApiError(500, "Something went wrong while update the post");
+  }
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, updatedPost, "Post updated successfully"));
+});
+
+export { createPost, getPost, allPosts, deletePost, updatePost };
