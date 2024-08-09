@@ -16,9 +16,7 @@ app.use(cookieParser());
 // Routes
 import userRouter from "./routes/user.routes.js";
 import postRoutes from "./routes/post.routes.js";
-import seedAdmin from "./routes/seed.routes.js";
 // Routes Declaration
-app.use("/api/v1/initial-data", seedAdmin);
 app.use("/api/v1/users", userRouter); // User routes
 app.use("/api/v1/posts", postRoutes); // Post Routes
 
