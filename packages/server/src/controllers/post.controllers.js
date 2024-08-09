@@ -51,11 +51,11 @@ const allPosts = asyncHandler(async (req, res) => {
     "-password -createdAt -updatedAt -__v -refreshToken",
   );
 
-  if (!posts.length) {
-    throw new ApiError(404, "No posts available");
-  }
-
   const data = { totalPosts: posts.length, posts };
+
+  if (!posts.length) {
+    return res.status(404).json(new ApiResponse(404, data, "No post created yet"));
+  }
 
   return res.status(200).json(new ApiResponse(200, data, "All posts"));
 });
@@ -115,7 +115,7 @@ const updatePost = asyncHandler(async (req, res) => {
     {
       new: true,
     },
-  ).populate("author", "-password -createdAt -updatedAt -__v -refreshToken")
+  ).populate("author", "-password -createdAt -updatedAt -__v -refreshToken");
 
   if (!updatedPost) {
     throw new ApiError(500, "Something went wrong while update the post");
