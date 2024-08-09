@@ -8,8 +8,8 @@ const postSchema = new Schema(
     },
     content: {
       type: String,
-      required: true,
-      min: [10, "Content should be at least 10 characters"],
+      required: [true, "Content is required"],
+      minlength: [10, "Content should be at least 10 characters"],
     },
     author: {
       type: Schema.Types.ObjectId,
