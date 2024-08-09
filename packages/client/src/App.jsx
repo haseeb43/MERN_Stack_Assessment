@@ -1,18 +1,34 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 // Pages
-import Auth from "./pages/auth/auth";
 import Home from "./pages/Home";
-import VerifyAuth from "./HOC/verifyAuth";
-import VerifyAdmin from "./HOC/verifyAdmin";
+import VerifyAuth from "./wrappers/verifyAuth";
+import VerifyAdmin from "./wrappers/verifyAdmin";
 import AdminLayout from "./layouts/AdminLayout";
+import LoggedIn from "./wrappers/loggedIn";
+import Register from "./pages/auth/register";
+import Login from "./pages/auth/login";
 
 const App = () => {
   return (
     <Routes>
       {/* Unprotected Routes  */}
-      <Route path="/register" element={<Auth />} />
+      <Route
+        path="/register"
+        element={
+          <LoggedIn>
+            <Register />
+          </LoggedIn>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <LoggedIn>
+            <Login />
+          </LoggedIn>
+        }
+      />
 
       {/* Protected Routes  */}
       <Route
