@@ -12,17 +12,16 @@ dotenv.config({
   try {
     await connectDb();
     await User.create({
-      username: "userfromseedfile",
+      username: "userfrdomseedfile",
       password: "protectedpassword",
       role: ADMIN_ROLE,
     });
 
     console.log("Successfully seed data");
-    process.exit(0);
   } catch (error) {
     console.log(`error while seeding ${error}`);
-    process.exit(1);
   } finally {
-    disconnectDB();
+    await disconnectDB();
+    process.exit(0);
   }
 })();
