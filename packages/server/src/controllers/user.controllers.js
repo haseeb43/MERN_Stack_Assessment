@@ -20,7 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const existedUser = await User.findOne({ username });
 
   if (existedUser) {
-    throw new ApiError(409, "User with email or username already exist");
+    throw new ApiError(422, "User with email or username already exist");
   }
 
   const user = await User.create({
@@ -31,7 +31,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const createdUser = await User.findById(user._id).select("-password");
 
   if (!createdUser) {
-    throw new ApiError(500, "Something went wrong while creating a user");
+    throw new ApiError(500, "Internal server error");
   }
 
   return res

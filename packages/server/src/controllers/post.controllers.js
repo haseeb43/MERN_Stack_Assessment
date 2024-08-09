@@ -9,17 +9,17 @@ const createPost = asyncHandler(async (req, res) => {
   const author = req.user._id;
 
   if ([title, content].some((item) => item.trim() === "")) {
-    throw new ApiError(409, "All fields are required");
+    throw new ApiError(422, "All fields are required");
   }
 
   if (content.length < 10) {
-    throw new ApiError(409, "Content must be at least 10 characters long");
+    throw new ApiError(422, "Content must be at least 10 characters long");
   }
 
   const post = await Post.create({ title, content, author });
 
   if (!post) {
-    throw new ApiError(500, "Something went wrong while creating post");
+    throw new ApiError(500);
   }
 
   return res
@@ -31,7 +31,7 @@ const getPost = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    throw new ApiError(409, `${id} is not a valid id`);
+    throw new ApiError(422, `${id} is not a valid id`);
   }
 
   const post = await Post.findById(id);
@@ -48,13 +48,15 @@ const getPost = asyncHandler(async (req, res) => {
 const allPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find().populate(
     "author",
-    "-password -createdAt -updatedAt -__v -refreshToken",
+    "-password -createdAt -updatedAt -refreshToken",
   );
 
   const data = { totalPosts: posts.length, posts };
 
   if (!posts.length) {
-    return res.status(404).json(new ApiResponse(404, data, "No post created yet"));
+    return res
+      .status(404)
+      .json(new ApiResponse(404, data, "No post created yet"));
   }
 
   return res.status(200).json(new ApiResponse(200, data, "All posts"));
@@ -64,7 +66,7 @@ const deletePost = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    throw new ApiError(409, `${id} is not a valid id`);
+    throw new ApiError(422, `${id} is not a valid id`);
   }
 
   const post = await Post.findById(id);
@@ -76,7 +78,7 @@ const deletePost = asyncHandler(async (req, res) => {
   const deletedPost = await Post.findByIdAndDelete(id);
 
   if (!deletePost) {
-    throw new ApiError(500, "Something went wront while deleting a post");
+    throw new ApiError(500, "Internal server error");
   }
 
   return res
@@ -89,15 +91,15 @@ const updatePost = asyncHandler(async (req, res) => {
   const { title, content } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    throw new ApiError(409, `${id} is not a valid id`);
+    throw new ApiError(422, `${id} is not a valid id`);
   }
 
   if ([title, content].some((item) => item.trim() === "")) {
-    throw new ApiError(409, "All fields are required");
+    throw new ApiError(422, "All fields are required");
   }
 
   if (content.length < 10) {
-    throw new ApiError(409, "Content must be at least 10 characters long");
+    throw new ApiError(422, "Content must be at least 10 characters long");
   }
 
   const post = await Post.findById(id);
@@ -115,10 +117,10 @@ const updatePost = asyncHandler(async (req, res) => {
     {
       new: true,
     },
-  ).populate("author", "-password -createdAt -updatedAt -__v -refreshToken");
+  ).populate("author", "-password -createdAt -updatedAt -refreshToken");
 
   if (!updatedPost) {
-    throw new ApiError(500, "Something went wrong while update the post");
+    throw new ApiError(500, "Internal server error");
   }
 
   return res
