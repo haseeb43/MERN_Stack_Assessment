@@ -2,7 +2,7 @@
   "name": "my-monorepo",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run dev --prefix packages/client\" \"npm run dev --prefix packages/server\"",
+    "dev": "concurrently \"npm run dev --prefix packages/client\" \"npm run dev --prefix packages/server\"",
     "seed": "node packages/server/src/db/seed.js"
   },
   "workspaces": [
@@ -11,5 +11,8 @@
   ],
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.26.0"
   }
 }
