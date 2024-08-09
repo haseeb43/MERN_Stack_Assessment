@@ -1,5 +1,6 @@
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { generateAccessAndRefreshTokens } from "../helpers/generateAccessAndRefreshTokens.js";
 import asyncHandler from "../utils/AsyncHandler.js";
 import User from "../models/user.models.js";
 import jwt from "jsonwebtoken";
@@ -7,25 +8,6 @@ import jwt from "jsonwebtoken";
 const options = {
   httpOnly: true,
   secure: true,
-};
-
-const generateAccessAndRefreshTokens = async (id) => {
-  try {
-    const user = await User.findById(id);
-    const accessToken = await user.generateAccessToken();
-    const refreshToken = await user.generateRefreshToken();
-
-    user.refreshToken = refreshToken;
-    await user.save({ validateBeforeSave: false });
-
-    return { accessToken, refreshToken };
-  } catch (error) {
-    console.log(`error in catch part of token generation ${error}`);
-    throw new ApiError(
-      500,
-      "Something while generating access and refresh token",
-    );
-  }
 };
 
 const registerUser = asyncHandler(async (req, res) => {
