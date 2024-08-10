@@ -2,8 +2,8 @@ import { Link, Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
   return (
-    <div>
-      <header>
+    <div className="flex">
+      <aside>
         <nav>
           <ul>
             <li>
@@ -13,8 +13,7 @@ const AdminLayout = () => {
             </li>
           </ul>
         </nav>
-      </header>
-
+      </aside>
       <div>
         <Outlet />
       </div>

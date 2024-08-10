@@ -16,7 +16,7 @@ const UpdatePost = () => {
     })
       .then((res) => {
         toast.info(res.data.message);
-        navigate("/");
+        navigate("/admin");
       })
       .catch((err) => {
         toast.error(err.response.data.message);

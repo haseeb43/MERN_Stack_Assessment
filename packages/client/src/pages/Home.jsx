@@ -23,7 +23,7 @@ const Home = () => {
         fetchAllPosts();
       })
       .catch((err) => {
-        console.log("ook")
+        console.log("ook");
         console.log(err.response.data.message);
         toast.error(err.response.data.message);
       });

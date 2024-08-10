@@ -1,4 +1,4 @@
-import UserForm from "../../components/auth/userForm";
+import AuthForm from "../../components/auth/authForm";
 import UserApi from "../../api/user/user";
 import { toast } from "react-toastify";
 import { ROLE_ADMIN } from "../../constants/constants";
@@ -32,10 +32,9 @@ const login = () => {
   };
 
   return (
-    <UserForm
-      title="Login Page"
+    <AuthForm
+      title="Login"
       onSubmit={handleOnSubmit}
-      haveAccount={false}
     />
   );
 };

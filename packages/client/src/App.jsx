@@ -10,11 +10,13 @@ import Register from "./pages/auth/register";
 import Login from "./pages/auth/login";
 import CreatePost from "./pages/post/createPost";
 import UpdatePost from "./pages/post/updatePost";
+ 
 
 const App = () => {
   return (
     <Routes>
       {/* Unprotected Routes  */}
+       
       <Route
         path="/register"
         element={

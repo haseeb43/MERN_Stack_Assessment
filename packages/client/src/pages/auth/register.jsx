@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import UserApi from "../../api/user/user";
-import UserForm from "../../components/auth/userForm";
+import AuthForm from "../../components/auth/authForm";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -21,10 +21,9 @@ const Register = () => {
   };
   
   return (
-    <UserForm
-      title="Register Page"
+    <AuthForm
+      title="Register"
       onSubmit={handleOnSubmit}
-      haveAccount={true}
     />
   );
 };
