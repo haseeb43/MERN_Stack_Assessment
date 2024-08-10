@@ -20,7 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const existedUser = await User.findOne({ username });
 
   if (existedUser) {
-    throw new ApiError(422, "User with email or username already exist");
+    throw new ApiError(422, "Username already taken");
   }
 
   const user = await User.create({
@@ -59,7 +59,7 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 
   const loggedInUser = await User.findById(user._id).select(
-    "-password -refreshToken",
+    "-password -refreshToken -updatedAt",
   );
 
   const { refreshToken, accessToken } = await generateAccessAndRefreshTokens(

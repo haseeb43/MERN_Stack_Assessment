@@ -55,8 +55,8 @@ const allPosts = asyncHandler(async (req, res) => {
 
   if (!posts.length) {
     return res
-      .status(404)
-      .json(new ApiResponse(404, data, "No post created yet"));
+      .status(200)
+      .json(new ApiResponse(200, data, "No post created yet"));
   }
 
   return res.status(200).json(new ApiResponse(200, data, "All posts"));

@@ -12,8 +12,8 @@ dotenv.config({
   try {
     await connectDb();
     await User.create({
-      username: "userfrdomseedfile",
-      password: "protectedpassword",
+      username: "admin",
+      password: "admin",
       role: ADMIN_ROLE,
     });
 
