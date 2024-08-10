@@ -3,6 +3,7 @@ import BlogPostApi from "../api/post/post";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Logout from "../components/auth/logoutButton";
+import MainLayout from "../layouts/mainLayout";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -33,6 +34,7 @@ const Home = () => {
     fetchAllPosts();
   }, []);
 
+  // return <MainLayout />;
   return (
     // Shared home page for admin and user - with authorized controls
     <div>
