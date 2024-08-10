@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import BlogPostApi from "../api/post/post";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ROLE_ADMIN } from "../constants/constants";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Logout from "../components/auth/logoutButton";
 
 const Home = () => {
-  const userRole = JSON.parse(localStorage.getItem("userData")).role;
-
-  const navigate = useNavigate();
-  const location = useLocation();
-
   const [posts, setPosts] = useState([]);
 
   const fetchAllPosts = () => {
@@ -28,20 +23,20 @@ const Home = () => {
         fetchAllPosts();
       })
       .catch((err) => {
+        console.log("ook")
+        console.log(err.response.data.message);
         toast.error(err.response.data.message);
       });
   };
 
   useEffect(() => {
-    if (userRole === ROLE_ADMIN && location.pathname !== "/admin") {
-      return navigate("/admin");
-    }
     fetchAllPosts();
   }, []);
 
   return (
     // Shared home page for admin and user - with authorized controls
     <div>
+      <Logout />
       {posts.length ? (
         posts.map(({ _id, title, content }, index) => (
           <div key={index}>
