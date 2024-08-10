@@ -3,6 +3,7 @@ import PostForm from "../../components/post/postForm";
 import BlogPostApi from "../../api/post/post";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import PageWrapper from "../../wrappers/pageWrapper";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -20,7 +21,11 @@ const CreatePost = () => {
         toast.error(err.response.data.message);
       });
   };
-  return <PostForm pageTitle="Create Post" onSubmit={handleOnSubmit} />;
+  return (
+    <PageWrapper>
+      <PostForm buttonTitle="Create Post" onSubmit={handleOnSubmit} />
+    </PageWrapper>
+  );
 };
 
 export default CreatePost;

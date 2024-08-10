@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { BackgroundGradient } from "../ui/background-gradient";
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, deletePost }) => {
   return (
     <div>
       <BackgroundGradient className="rounded-[22px] min-w-[350px] max-w-[350px] min-h-[24rem] max-h-[24rem] p-4 sm:p-10 bg-white dark:bg-zinc-900">
@@ -24,12 +24,12 @@ const PostCard = ({ post }) => {
             Read More
           </Link>
 
-          <Link
-            to={`/posts/${post._id}`}
+          <button
             className="rounded-sm p-4 py-1 text-[#ff4444] space-x-1 bg-black text-xs font-bold dark:bg-zinc-800"
+            onClick={() => deletePost(post._id)}
           >
             Delete
-          </Link>
+          </button>
 
           <Link
             to={`/admin/update-post/${post._id}`}

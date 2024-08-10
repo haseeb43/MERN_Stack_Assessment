@@ -20,6 +20,17 @@ const Home = () => {
       });
   };
 
+  const deletePost = (id) => {
+    BlogPostApi.delete_post(id)
+      .then((res) => {
+        fetchAllPosts();
+        toast.info(res.data.message)
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
   useEffect(() => {
     fetchAllPosts();
   }, []);
@@ -28,7 +39,9 @@ const Home = () => {
   return (
     <PageWrapper>
       {posts.length ? (
-        posts.map((post, index) => <PostCard key={index} post={post} />)
+        posts.map((post, index) => (
+          <PostCard key={index} post={post} deletePost={deletePost} />
+        ))
       ) : (
         <span>
           There is no post yet <Link to="/admin/create-post">Create One</Link>

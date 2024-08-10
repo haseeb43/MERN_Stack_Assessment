@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import PostForm from "../../components/post/postForm";
 import BlogPostApi from "../../api/post/post";
+import PageWrapper from "../../wrappers/pageWrapper";
 
 const UpdatePost = () => {
   const { id } = useParams();
   const [postData, setPostData] = useState({ title: "", content: "" });
 
   const navigate = useNavigate();
+
   const handleOnSubmit = ({ title, content }) => {
     BlogPostApi.update_post(id, {
       title,
@@ -32,11 +34,13 @@ const UpdatePost = () => {
   }, []);
 
   return (
-    <PostForm
-      pageTitle="Update Post"
-      onSubmit={handleOnSubmit}
-      postData={postData}
-    />
+    <PageWrapper>
+      <PostForm
+        buttonTitle="Update Post"
+        onSubmit={handleOnSubmit}
+        postData={postData}
+      />
+    </PageWrapper>
   );
 };
 
