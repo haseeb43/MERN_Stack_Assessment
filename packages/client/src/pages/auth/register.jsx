@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import UserApi from "../../api/user/user";
 import AuthForm from "../../components/auth/authForm";
 import { useNavigate } from "react-router-dom";
+import PageWrapper from "../../wrappers/pageWrapper";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -19,12 +20,11 @@ const Register = () => {
         toast.error(err.response.data.message);
       });
   };
-  
+
   return (
-    <AuthForm
-      title="Register"
-      onSubmit={handleOnSubmit}
-    />
+    <PageWrapper>
+      <AuthForm title="Register" onSubmit={handleOnSubmit} />
+    </PageWrapper>
   );
 };
 
