@@ -11,8 +11,8 @@ const axiosClient = axios.create(options);
 // Add a response interceptor
 axiosClient.interceptors.request.use(
   function (response) {
-    if (localStorage.getItem("token")) {
-      response.headers.Authorization = localStorage.getItem("token");
+    if (localStorage.getItem("authenticated")) {
+      response.headers.Authorization = `Bearer ${localStorage.getItem("authenticated")}`;
     }
 
     return response;
@@ -36,7 +36,6 @@ axiosClient.interceptors.response.use(
       //   );
       // Need to logout here
       return Promise.reject(error);
-
     } else if (error.response.status === 422) {
       return Promise.reject(error);
     }

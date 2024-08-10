@@ -8,7 +8,7 @@ class BlogPostApi {
     return axiosClient.get("/api/v1/posts");
   }
   static get_single(id) {
-    return axiosClient.get(`/v1/posts/${id}`);
+    return axiosClient.get(`/api/v1/posts/${id}`);
   }
   static delete_post(id) {
     return axiosClient.delete(`/api/v1/posts/${id}`);

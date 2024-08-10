@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function UserForm({ title, onSubmit, haveAccount }) {
+const UserForm = ({ title, onSubmit, haveAccount }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -59,6 +59,6 @@ function UserForm({ title, onSubmit, haveAccount }) {
       )}
     </div>
   );
-}
+};
 
 export default UserForm;

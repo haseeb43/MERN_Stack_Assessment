@@ -8,6 +8,8 @@ import AdminLayout from "./layouts/AdminLayout";
 import LoggedIn from "./wrappers/loggedIn";
 import Register from "./pages/auth/register";
 import Login from "./pages/auth/login";
+import CreatePost from "./pages/post/createPost";
+import UpdatePost from "./pages/post/updatePost";
 
 const App = () => {
   return (
@@ -50,15 +52,9 @@ const App = () => {
           </VerifyAdmin>
         }
       >
-        <Route index element={<div>This is admin main page</div>} />
-        <Route
-          path="create-post"
-          element={<div>This is create post page</div>}
-        />
-        <Route
-          path="update-post"
-          element={<div>This is create update page</div>}
-        />
+        <Route index element={<Home />} />
+        <Route path="create-post" element={<CreatePost />} />
+        <Route path="update-post/:id" element={<UpdatePost />} />
       </Route>
     </Routes>
   );
