@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Logout from "../components/auth/logoutButton";
 import MainLayout from "../layouts/mainLayout";
+import PostCard from "../components/post/postCard";
+import PageWrapper from "../wrappers/pageWrapper";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -18,49 +20,21 @@ const Home = () => {
       });
   };
 
-  const deletePost = (id) => {
-    BlogPostApi.delete_post(id)
-      .then((res) => {
-        fetchAllPosts();
-      })
-      .catch((err) => {
-        console.log("ook");
-        console.log(err.response.data.message);
-        toast.error(err.response.data.message);
-      });
-  };
-
   useEffect(() => {
     fetchAllPosts();
   }, []);
 
   // return <MainLayout />;
   return (
-    // Shared home page for admin and user - with authorized controls
-    <div>
-      <Logout />
+    <PageWrapper>
       {posts.length ? (
-        posts.map(({ _id, title, content }, index) => (
-          <div key={index}>
-            <div>
-              <span>{title}</span>
-            </div>
-            <span>{content}</span>
-
-            <div>
-              <Link to={`/admin/update-post/${_id}`}>
-                <button>Update</button>
-              </Link>
-              <button onClick={() => deletePost(_id)}>Delete</button>
-            </div>
-          </div>
-        ))
+        posts.map((post, index) => <PostCard key={index} post={post} />)
       ) : (
         <span>
           There is no post yet <Link to="/admin/create-post">Create One</Link>
         </span>
       )}
-    </div>
+    </PageWrapper>
   );
 };
 

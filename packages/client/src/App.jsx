@@ -78,7 +78,7 @@ const App = () => {
           </VerifyAuth>
         }
       >
-        <Route index element={<Dashboard title="user home page" />} />
+        <Route index element={<Home />} />
         <Route path="/blog" element={<Dashboard title="user blog page" />} />
       </Route>
 
@@ -92,12 +92,9 @@ const App = () => {
           </VerifyAdmin>
         }
       >
-        <Route index element={<Dashboard title="home page" />} />
-        <Route path="create-post" element={<Dashboard title="create post" />} />
-        <Route
-          path="update-post/:id"
-          element={<Dashboard title="update post" />}
-        />
+        <Route index element={<Home />} />
+        <Route path="create-post" element={<CreatePost />} />
+        <Route path="update-post/:id" element={<UpdatePost />} />
       </Route>
     </Routes>
   );

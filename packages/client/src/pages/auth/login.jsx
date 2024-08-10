@@ -3,6 +3,7 @@ import UserApi from "../../api/user/user";
 import { toast } from "react-toastify";
 import { ROLE_ADMIN } from "../../constants/constants";
 import { useNavigate } from "react-router-dom";
+import PageWrapper from "../../wrappers/pageWrapper";
 
 const login = () => {
   const navigate = useNavigate();
@@ -32,10 +33,9 @@ const login = () => {
   };
 
   return (
-    <AuthForm
-      title="Login"
-      onSubmit={handleOnSubmit}
-    />
+    <PageWrapper>
+      <AuthForm title="Login" onSubmit={handleOnSubmit} />
+    </PageWrapper>
   );
 };
 
