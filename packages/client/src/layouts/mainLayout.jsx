@@ -84,15 +84,5 @@ export const Logo = () => {
     </Link>
   );
 };
-export const LogoIcon = () => {
-  return (
-    <Link
-      to="#"
-      className="max-w-[80%] flex space-x-2 items-center text-sm text-black py-1 relative z-20"
-    >
-      <img src="/logoIcon.png" alt="Logo icon" />
-    </Link>
-  );
-};
 
 export default MainLayout;
