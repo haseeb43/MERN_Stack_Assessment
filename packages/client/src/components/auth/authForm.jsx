@@ -28,7 +28,7 @@ const UserForm = ({ title, onSubmit }) => {
       setErrors(validationErrors);
     } else {
       setErrors({});
-      onSubmit({ username: username.trim().toLowerCase, password });
+      onSubmit({ username: username.trim().toLowerCase(), password });
     }
   };
 
