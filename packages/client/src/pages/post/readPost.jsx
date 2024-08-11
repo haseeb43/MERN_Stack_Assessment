@@ -3,6 +3,7 @@ import PageWrapper from "../../wrappers/pageWrapper";
 import { useParams } from "react-router-dom";
 import BlogPostApi from "../../api/post/post";
 import FormattedDate from "../../components/helpers/formateDate";
+import ShowIf from "../../wrappers/showIf";
 
 const ReadPost = () => {
   const { id } = useParams();
@@ -28,9 +29,11 @@ const ReadPost = () => {
           <div>
             Posted : <FormattedDate timestamp={post?.createdAt} />
           </div>
-          <div>
-            Last Update : <FormattedDate timestamp={post?.updatedAt} />
-          </div>
+          <ShowIf condition={post?.createdAt !== post?.updatedAt}>
+            <div>
+              Last Update : <FormattedDate timestamp={post?.updatedAt} />
+            </div>
+          </ShowIf>
         </div>
       </div>
     </PageWrapper>

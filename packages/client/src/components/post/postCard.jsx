@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
 import { BackgroundGradient } from "../ui/background-gradient";
 import ShowIfAdmin from "../../wrappers/showIfAdmin";
+import FormattedDate from "../helpers/formateDate";
+import ShowIf from "../../wrappers/showIf";
 const PostCard = ({ post, deletePost }) => {
   return (
     <div>
       <BackgroundGradient className="rounded-[22px] min-w-[350px] max-w-[350px] min-h-[24rem] max-h-[24rem] p-4 sm:p-10 bg-white dark:bg-zinc-900">
+        <div className="flex justify-between items-start text-[8px] text-neutral-600 dark:text-neutral-400 mb-4">
+          {<FormattedDate timestamp={post?.createdAt} />}
+          <ShowIf condition={post.createdAt !== post.updatedAt}>
+            <span>(Edited)</span>
+          </ShowIf>
+        </div>
         <p className="text-base sm:text-xl text-black mt-4 mb-2 dark:text-neutral-200">
           {post.title.length > 55
             ? post.title.substring(0, 55) + "..."
