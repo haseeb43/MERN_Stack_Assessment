@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../components/ui/sidebar";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { cn } from "../lib/utils";
 import UserApi from "../api/user/user";
 
-const MainLayout = React.memo(({ links }) => {
+const MainLayout = ({ links }) => {
   const username = JSON.parse(localStorage.getItem("userData")).username;
   console.log(`username : ${username}`);
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ const MainLayout = React.memo(({ links }) => {
       <Outlet />
     </div>
   );
-});
+};
 
 export const Logo = () => {
   return (
