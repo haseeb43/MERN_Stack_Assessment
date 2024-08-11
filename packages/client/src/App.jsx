@@ -4,13 +4,12 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import VerifyAuth from "./wrappers/verifyAuth";
 import VerifyAdmin from "./wrappers/verifyAdmin";
-import AdminLayout from "./layouts/AdminLayout";
 import LoggedIn from "./wrappers/loggedIn";
 import Register from "./pages/auth/register";
 import Login from "./pages/auth/login";
 import CreatePost from "./pages/post/createPost";
 import UpdatePost from "./pages/post/updatePost";
-import MainLayout, { Dashboard } from "./layouts/mainLayout";
+import MainLayout from "./layouts/mainLayout";
 import { IconBrandTabler } from "@tabler/icons-react";
 import ReadPost from "./pages/post/readPost";
 
@@ -36,13 +35,6 @@ const App = () => {
     {
       label: "Home",
       href: "/",
-      icon: (
-        <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Blog",
-      href: "/blog",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
