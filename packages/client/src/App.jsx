@@ -12,6 +12,7 @@ import CreatePost from "./pages/post/createPost";
 import UpdatePost from "./pages/post/updatePost";
 import MainLayout, { Dashboard } from "./layouts/mainLayout";
 import { IconBrandTabler } from "@tabler/icons-react";
+import ReadPost from "./pages/post/readPost";
 
 const App = () => {
   const adminRoutes = [
@@ -79,7 +80,7 @@ const App = () => {
         }
       >
         <Route index element={<Home />} />
-        <Route path="/blog" element={<Dashboard title="user blog page" />} />
+        <Route path="posts/:id" element={<ReadPost />} />
       </Route>
 
       {/* Admin Routes  */}
