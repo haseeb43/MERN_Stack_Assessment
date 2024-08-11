@@ -20,7 +20,7 @@ export const SidebarProvider = ({
   setOpen: setOpenProp,
   animate = true,
 }) => {
-  const [openState, setOpenState] = useState(false);
+  const [openState, setOpenState] = useState(true);
 
   const open = openProp !== undefined ? openProp : openState;
   const setOpen = setOpenProp !== undefined ? setOpenProp : setOpenState;
