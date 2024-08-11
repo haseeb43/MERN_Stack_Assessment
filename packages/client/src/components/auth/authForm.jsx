@@ -11,7 +11,11 @@ const UserForm = ({ title, onSubmit }) => {
 
   const validate = () => {
     const errors = {};
-    if (!username) errors.username = "Username is required";
+    if (!username) {
+      errors.username = "Username/Email is required";
+    } else if (username.trim().includes(" ")) {
+      errors.username = "Username/Email cannot contain spaces";
+    }
     if (!password) errors.password = "Password is required";
     return errors;
   };
@@ -20,9 +24,11 @@ const UserForm = ({ title, onSubmit }) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
+      console.log("length found : ", Object.keys(validationErrors));
       setErrors(validationErrors);
     } else {
-      onSubmit({ username, password });
+      setErrors({});
+      onSubmit({ username: username.trim().toLowerCase, password });
     }
   };
 
@@ -46,7 +52,9 @@ const UserForm = ({ title, onSubmit }) => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
+          {errors.username && (
+            <p className="text-red-400 text-xs">{errors.username}</p>
+          )}
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
@@ -57,7 +65,9 @@ const UserForm = ({ title, onSubmit }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
+          {errors.password && (
+            <p className="text-red-400 text-xs">{errors.password}</p>
+          )}
         </LabelInputContainer>
         <button
           className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
