@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { BackgroundGradient } from "../ui/background-gradient";
-
+import ShowIfAdmin from "../../wrappers/showIfAdmin";
 const PostCard = ({ post, deletePost }) => {
   return (
     <div>
@@ -24,19 +24,21 @@ const PostCard = ({ post, deletePost }) => {
             Read More
           </Link>
 
-          <button
-            className="rounded-sm p-4 py-1 text-[#ff4444] space-x-1 bg-black text-xs font-bold dark:bg-zinc-800"
-            onClick={() => deletePost(post._id)}
-          >
-            Delete
-          </button>
+          <ShowIfAdmin>
+            <button
+              className="rounded-sm p-4 py-1 text-[#ff4444] space-x-1 bg-black text-xs font-bold dark:bg-zinc-800"
+              onClick={() => deletePost(post._id)}
+            >
+              Delete
+            </button>
 
-          <Link
-            to={`/admin/update-post/${post._id}`}
-            className="rounded-sm p-4 py-1 text-[#278cf8] space-x-1 bg-black text-xs font-bold dark:bg-zinc-800"
-          >
-            Update
-          </Link>
+            <Link
+              to={`/admin/update-post/${post._id}`}
+              className="rounded-sm p-4 py-1 text-[#278cf8] space-x-1 bg-black text-xs font-bold dark:bg-zinc-800"
+            >
+              Update
+            </Link>
+          </ShowIfAdmin>
         </div>
       </BackgroundGradient>
     </div>

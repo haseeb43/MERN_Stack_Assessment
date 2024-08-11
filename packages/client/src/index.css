@@ -17,6 +17,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 body {
   min-width: 320px;
   width: 100%;

@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import BlogPostApi from "../api/post/post";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import Logout from "../components/auth/logoutButton";
-import MainLayout from "../layouts/mainLayout";
 import PostCard from "../components/post/postCard";
 import PageWrapper from "../wrappers/pageWrapper";
-
+import ShowIfAdmin from "../wrappers/showIfAdmin";
 const Home = () => {
   const [posts, setPosts] = useState([]);
 
@@ -24,7 +22,7 @@ const Home = () => {
     BlogPostApi.delete_post(id)
       .then((res) => {
         fetchAllPosts();
-        toast.info(res.data.message)
+        toast.info(res.data.message);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -44,7 +42,10 @@ const Home = () => {
         ))
       ) : (
         <span>
-          There is no post yet <Link to="/admin/create-post">Create One</Link>
+          There is no post yet
+          <ShowIfAdmin>
+            <Link to="/admin/create-post"> Create One</Link>
+          </ShowIfAdmin>
         </span>
       )}
     </PageWrapper>
