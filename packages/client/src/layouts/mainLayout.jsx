@@ -30,7 +30,7 @@ const MainLayout = ({ links }) => {
     ),
   };
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <div
@@ -42,7 +42,7 @@ const MainLayout = ({ links }) => {
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-            {open ? <Logo /> : <LogoIcon />}
+            <Logo />
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
                 <SidebarLink key={idx} link={link} />
@@ -78,7 +78,7 @@ export const Logo = () => {
   return (
     <Link
       to="#"
-      className="max-w-[80%] flex space-x-2 items-center text-sm text-black py-1 relative z-20"
+      className="max-w-[100%] flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
       <img src="/logo.png" alt="Logo Image" />
     </Link>
@@ -88,7 +88,7 @@ export const LogoIcon = () => {
   return (
     <Link
       to="#"
-      className="max-w-[70px] flex space-x-2 items-center text-sm text-black py-1 relative z-20"
+      className="max-w-[80%] flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
       <img src="/logoIcon.png" alt="Logo icon" />
     </Link>
