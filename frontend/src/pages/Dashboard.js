@@ -6,6 +6,14 @@ import axios from 'axios';
 const Dashboard = () => {
   const [posts, setPosts] = useState([]);
 
+  const deletePost = async () => {
+    const token = localStorage.getItem('token');
+    await axios.delete(`http://localhost:5000/api/posts/${post._id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    setPosts(posts.filter((p) => p._id !== post._id));
+  }
+
   useEffect(() => {
     const fetchPosts = async () => {
       const token = localStorage.getItem('token');
@@ -32,13 +40,7 @@ const Dashboard = () => {
               <Link to={`/posts/${post._id}`} className="text-blue-500 mr-4">View</Link>
               <Link to={`/edit-post/${post._id}`} className="text-yellow-500 mr-4">Edit</Link>
               <button
-                onClick={async () => {
-                  const token = localStorage.getItem('token');
-                  await axios.delete(`http://localhost:5000/api/posts/${post._id}`, {
-                    headers: { Authorization: `Bearer ${token}` },
-                  });
-                  setPosts(posts.filter((p) => p._id !== post._id));
-                }}
+                onClick={deletePost}
                 className="text-red-500"
               >
                 Delete
