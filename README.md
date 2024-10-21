@@ -20,8 +20,6 @@
 
 ## API Documentation
 
-**Note:** The detailed Backend API documentation is available on Postman. 
-Please refer to [API Documentation on Postman]().
 
 ### Backend Server
 - Base URL: [http://localhost:5000](http://localhost:5000)
@@ -49,7 +47,7 @@ JWT_SECRET=your_jwt_secret
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/softmindsol/MERN_Stack_Assessment.git
+   git clone https://github.com/haseeb43/MERN_Stack_Assessment.git
    ```
 
 2. **Install dependencies:**
