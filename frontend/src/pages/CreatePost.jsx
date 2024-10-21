@@ -14,7 +14,7 @@ const CreatePost = () => {
     const token = localStorage.getItem('token');
     
     // Decode the token to get the username
-    const userRole = localStorage.getItem('role');
+    // const userRole = localStorage.getItem('role');
     const username = jwtDecode(token)?.username;
     // const username = jwt.decode(token)?.username;
 
@@ -38,14 +38,14 @@ const CreatePost = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="mb-2 p-2 border"
-          required // Make this field required
+          required
         />
         <textarea
           placeholder="Content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           className="mb-4 p-2 border"
-          required // Make this field required
+          required 
         />
         <button type="submit" className="bg-green-500 text-white py-2">
           Create Post
