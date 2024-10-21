@@ -1,72 +1,93 @@
-# MERN Stack Interview Task
+# MERN-Assessment
 
-## Task: Create a Simple Blog Post Application with Role-Based Authentication
+![Node.js]
+![Express]
+![JWT]
 
-### Overview
-You are required to create a simple blog post application using the MERN stack. The application should allow users to create, read, update, and delete blog posts. Additionally, implement role-based authentication to control access to certain API endpoints.
+ This repository contains a production-ready the backend server and frontend application for a basic MERN Stack Blog Posting.  
+ 
+ Back-end is built with Node.js and Express and MongoDB for Database.
 
-### Requirements
-1. **Backend (Node.js and Express)**
-    - Set up a basic Express server.
-    - Create a MongoDB schema for a `User` with the following fields:
-        - `username` (string, required)
-        - `password` (string, required)
-        - `role` (string, required, enum: ['admin', 'user'])
-    - Create a MongoDB schema for a `Post` with the following fields:
-        - `title` (string, required)
-        - `content` (string, required)
-        - `author` (string, required)
-        - `createdAt` (date, default: Date.now)
-    - Implement the following API endpoints:
-        - `POST /register` - Register a new user.
-        - `POST /login` - Log in an existing user and return a JWT token.
-        - `GET /posts` - Retrieve all blog posts.
-        - `GET /posts/:id` - Retrieve a single blog post by ID.
-        - `POST /posts` - Create a new blog post (restricted to 'admin' role).
-        - `PUT /posts/:id` - Update an existing blog post by ID (restricted to 'admin' role).
-        - `DELETE /posts/:id` - Delete a blog post by ID (restricted to 'admin' role).
+ Front-end is built with Reactjs. 
 
-2. **Frontend (React)**
-    - Set up a basic React application.
-    - Create components for the following views:
-        - List of all blog posts.
-        - View a single blog post.
-        - Form to create a new blog post (restricted to 'admin' role).
-        - Form to update an existing blog post (restricted to 'admin' role).
-        - Login and registration forms.
-    - Use Axios (or fetch) to communicate with the backend API.
 
-### Instructions
-1. **Setting Up the Project**
-    - Set up the project structure for both the backend and frontend.
-    - Ensure the backend server is running on port 5000 and the frontend on port 3000.
+## Features
 
-2. **Implementing the Backend**
-    - Define the `User` and `Post` schemas using Mongoose.
-    - Implement JWT-based authentication.
-    - Create middleware to check for JWT token and user role.
-    - Implement the required API endpoints with role-based access control.
-    - Test the endpoints using Postman or a similar tool.
+- **Authentication Handling:** Uses JWT for auth.
+- **Error Management:**.
 
-3. **Implementing the Frontend**
-    - Create forms for user registration and login.
-    - Store the JWT token on successful login and use it for authenticated requests.
-    - Create a form to submit new blog posts (visible only to 'admin' users).
-    - Display a list of blog posts on the main page.
-    - Create a detail view for individual blog posts.
-    - Implement functionality to update and delete blog posts (accessible only to 'admin' users).
 
-### Deliverables
-- A GitHub repository with the complete code for both the backend and frontend.
-- A `README.md` file with instructions on how to run the application.
-- Ensure code quality and proper use of Git for version control.
 
-### Evaluation Criteria
-- Correctness and completeness of the implementation.
-- Code quality and organization.
-- Proper use of React, Express, and Mongoose best practices.
-- Ability to create a functional and responsive UI.
-- Proper error handling and validation.
-- Implementation of role-based authentication and authorization.
+## API Documentation
 
-Good luck!
+**Note:** The detailed Backend API documentation is available on Postman. 
+Please refer to [API Documentation on Postman]().
+
+### Backend Server
+- Base URL: [http://localhost:5000](http://localhost:5000)
+
+### Frontend Server
+- Base URL: [http://localhost:3000](http://localhost:3000)
+
+## Prerequisites
+
+- Node.js
+- Express
+- React.js
+- JSON Web Token (JWT)
+- MongoDB
+
+## Environment Variables
+
+```bash
+MONGO_URI=your_mongo_uri
+JWT_SECRET=your_jwt_secret 
+```
+
+## Getting Started
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/softmindsol/MERN_Stack_Assessment.git
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   cd MERN_Stack_Assessment
+   ```
+   ```bash
+   npm install
+   ```
+
+   Install Front-end dependencies.
+   ```bash
+   cd frontend
+   ```
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables:**
+
+   Create a `.env` file in the root of the project and add the environment variables listed above.
+
+4. **Run the server:**
+
+    Execute following command in the root directory of the project.  
+
+   ```bash
+   npm run app
+   ```
+
+   The back-end server will be running at [http://localhost:5000](http://localhost:5000) or the specified port in your `.env` file.
+
+   The front-end server will be running at [http://localhost:3000](http://localhost:3000).
+
+
+## Dependencies
+
+- See back-end [package.json] for a detailed list of dependencies.
+
